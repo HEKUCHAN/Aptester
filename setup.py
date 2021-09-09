@@ -8,6 +8,7 @@ __author__ = 'Heitor Hirose'
 setup(
     name='Aptester',
     version='0.0.1',
+    python_requires='>=3.4',
     entry_points={
         'console_scripts': [
             'aptester=Aptester.core:main',
@@ -32,5 +33,7 @@ setup(
     keywords=['Image Registration'],
     license='MIT License',
     install_requires=[
+        "pathlib",
+        "argparse"
     ],
 )

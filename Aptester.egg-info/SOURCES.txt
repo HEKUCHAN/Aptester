@@ -1,0 +1,11 @@
+LICENCE
+README.md
+setup.py
+Aptester/__init__.py
+Aptester/__main__.py
+Aptester/core.py
+Aptester.egg-info/PKG-INFO
+Aptester.egg-info/SOURCES.txt
+Aptester.egg-info/dependency_links.txt
+Aptester.egg-info/entry_points.txt
+Aptester.egg-info/top_level.txt

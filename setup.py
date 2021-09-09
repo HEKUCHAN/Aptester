@@ -6,8 +6,14 @@ from setuptools import setup, find_packages
 __author__ = 'Heitor Hirose'
 
 setup(
-    name='Auto-Python-Tester',
+    name='Aptester',
     version='0.0.1',
+    entry_points={
+        'console_scripts': [
+            'aptester=Aptester.core:main',
+            'Aptester=Aptester.core:main'
+        ],
+    },
     description='Auto Tester for Competitive programming',
     author='Heitor Hirose',
     author_email='Heitorhirose@gmail.com',

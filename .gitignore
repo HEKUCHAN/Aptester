@@ -1,4 +1,11 @@
-__pycache__
-__pycache__/*
 Aptester.egg-info
 Aptester.egg-info/*
+__pycache__
+__pycache__/*
+__pypackages__/
+.ipynb_checkpoints/
+*.pyc
+*~
+*/.mypy_cache/
+.DS_Store
+database.db

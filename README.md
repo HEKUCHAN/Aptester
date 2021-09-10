@@ -1,5 +1,5 @@
 # Auto-Python-Tester
-[![Python Versions](https://img.shields.io/pypi/pyversions/ApTester.svg)](https://pypi.org/project/ApTester
+[![Python Versions](https://img.shields.io/pypi/pyversions/ApTester.svg)](https://pypi.org/project/ApTester)
 
 Pythonで競技プログラミングをするときに、テストを自動で実行してくれるパッケージです。
 

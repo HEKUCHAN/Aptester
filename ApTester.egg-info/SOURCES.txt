@@ -1,4 +1,6 @@
+LICENCE
 README.md
+pyproject.toml
 setup.py
 ApTester.egg-info/PKG-INFO
 ApTester.egg-info/SOURCES.txt

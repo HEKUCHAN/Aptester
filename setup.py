@@ -7,7 +7,7 @@ __author__ = 'Heitor Hirose'
 
 setup(
     name='Aptester',
-    version='0.0.1',
+    version='0.1.0',
     python_requires='>=3.4',
     entry_points={
         'console_scripts': [
@@ -34,6 +34,8 @@ setup(
     license='MIT License',
     install_requires=[
         "pathlib",
-        "argparse"
+        "argparse",
+        "fabric",
+        "rich"
     ],
 )

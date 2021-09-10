@@ -3,6 +3,7 @@
 ![PyPI - Wheel](https://img.shields.io/pypi/wheel/ApTester)
 ![PyPI - Implementation](https://img.shields.io/pypi/implementation/ApTester)
 ![PyPI - Version](https://img.shields.io/badge/version-0.1.1-blue)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 
 Pythonで競技プログラミングをするときに、テストを自動で実行してくれるパッケージです。

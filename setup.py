@@ -3,12 +3,16 @@
 
 from setuptools import setup, find_packages
 
+from pathlib import Path
+this_directory = Path(__file__).parent
+long_description = (this_directory / "README.md").read_text()
+
 __author__ = 'Heitor Hirose'
 
 setup(
     name='ApTester',
-    version='0.1.1',
-    python_requires='>=3.4',
+    version='0.1.2',
+    python_requires='>=3.5',
     entry_points={
         'console_scripts': [
             'aptester=Aptester.core:main',
@@ -38,4 +42,6 @@ setup(
         "fabric3",
         "rich"
     ],
+    long_description=long_description,
+    long_description_content_type='text/markdown'
 )

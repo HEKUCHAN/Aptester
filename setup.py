@@ -6,8 +6,8 @@ from setuptools import setup, find_packages
 __author__ = 'Heitor Hirose'
 
 setup(
-    name='Aptester',
-    version='0.1.0',
+    name='ApTester',
+    version='0.1.1',
     python_requires='>=3.4',
     entry_points={
         'console_scripts': [
@@ -35,7 +35,7 @@ setup(
     install_requires=[
         "pathlib",
         "argparse",
-        "fabric",
+        "fabric3",
         "rich"
     ],
 )

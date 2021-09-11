@@ -44,6 +44,9 @@ class ReadFiles():
 
         file.close()
         return data
+    
+    def create(num):
+        pass
 
     def analysis(data):
         testcases = None

@@ -61,8 +61,8 @@ Auto Tester for Competitive programming.
         for l in test:
             app(l.decode('utf-8'))
         
-        test = "\n".join(answers)
-        answer = "\n".join(i[2])
+        test = "\n".join(i[2])
+        answer = "\n".join(answers)
         if test == answer:
             print(green(f"The {i[0]} was pased."))
         else:

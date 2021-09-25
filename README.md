@@ -2,7 +2,7 @@
 [![Python Versions](https://img.shields.io/pypi/pyversions/ApTester.svg)](https://pypi.org/project/ApTester)
 ![PyPI - Wheel](https://img.shields.io/pypi/wheel/ApTester)
 ![PyPI - Implementation](https://img.shields.io/pypi/implementation/ApTester)
-![PyPI - Version](https://img.shields.io/badge/version-0.1.1-blue)
+![PyPI - Version](https://img.shields.io/badge/version-0.1.4-blue)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Downloads](https://static.pepy.tech/personalized-badge/aptester?period=total&units=international_system&left_color=grey&right_color=blue&left_text=Downloads)](https://pepy.tech/project/aptester)
 

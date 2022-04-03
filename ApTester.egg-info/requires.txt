@@ -1,4 +1,0 @@
-pathlib
-argparse
-fabric3
-rich

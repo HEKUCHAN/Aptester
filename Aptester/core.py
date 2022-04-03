@@ -60,7 +60,7 @@ Auto Tester for Competitive programming.
         app = answers.append
         for l in test:
             app(l.decode('utf-8'))
-        
+
         test = "\n".join(i[2])
         answer = "\n".join(answers)
         if test == answer:

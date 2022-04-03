@@ -9,7 +9,7 @@ class Tester():
         self.python_path = python_path
         self.input_path = input_path
         self.executable = executable
-    
+
     @staticmethod
     def check_file(file) -> bool:
         file = pathlib.Path(file).resolve()
@@ -34,7 +34,7 @@ class Tester():
             for i in error.stderr.splitlines():
                 print(i.decode('utf-8'))
             sys.exit()
-    
+
 class ReadFiles():
     @staticmethod
     def read(file_path) -> str:
@@ -68,7 +68,7 @@ class ReadFiles():
 
                 inputs = None
                 continue
-            
+
             if re.match('-(.*)-', i):
                 inputs = True
                 testcases = "".join(re.findall('-(.*)-', i))

@@ -16,6 +16,7 @@ def main():
         )
     )
 
+    # Initial command
     sub_parser: argparse._SubParsersAction = parser.add_subparsers(
         dest="command", help="Normal Command."
     )

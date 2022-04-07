@@ -1,11 +1,9 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
-
+from pathlib import Path
 from setuptools import setup, find_packages
 
-from pathlib import Path
 this_directory = Path(__file__).parent
-long_description = (this_directory / "README.md").read_text()
+long_description = (this_directory / "README.md").read_text(encoding="utf-8")
 
 __author__ = 'Heitor Hirose'
 
@@ -15,8 +13,8 @@ setup(
     python_requires='>=3.5',
     entry_points={
         'console_scripts': [
-            'aptester=Aptester.core:main',
-            'Aptester=Aptester.core:main'
+            'aptester=Aptester.main:main',
+            'Aptester=Aptester.main:main'
         ],
     },
     description='Auto Tester for Competitive programming',

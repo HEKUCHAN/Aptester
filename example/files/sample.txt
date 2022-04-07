@@ -1,0 +1,32 @@
+!information
+    author: "Mr.sample (Option)"
+    name: "FizzBuzz Tests (Option)"
+    description: "Something (Option)"
+information!
+
+!config
+    limit-memory: 1024
+    limit-timeout: 1000
+config!
+
+-TEST1-
+3
+_TEST1_
+1
+2
+Fizz
+_END_
+
+-TEST2-
+9
+_TEST2_
+1
+2
+Fizz
+4
+Buzz
+Fizz
+7
+8
+Fizz
+_END_

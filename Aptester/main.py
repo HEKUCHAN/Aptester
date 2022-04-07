@@ -1,17 +1,17 @@
-# -*- coding: utf-8 -*-
 import textwrap
 import argparse
 from . import commands
 from fabric.colors import red
 
+
 def main():
     parser: argparse.ArgumentParser = argparse.ArgumentParser(
-        description = textwrap.dedent(
+        description=textwrap.dedent(
             """\
             This is a tool for Competitive programming.
             You can use this tool to run many tests automatically.
 
-            ©Copyright 2022 Hirose Heitor\
+            ©Copyright 2022 Heitor Hirose\
             """
         )
     )
@@ -28,10 +28,16 @@ def main():
     parser_run.set_defaults(handler=commands.run)
 
     # Config command
-    parser_config: argparse.ArgumentParser = parser_config.add_parser(
+    parser_config: argparse.ArgumentParser = sub_parser.add_parser(
         "config", help="You can change or check the config of tests. `config -h`"
     )
     parser_config.set_defaults(handler=commands.config)
+
+    # Check Command
+    parser_check: argparse.ArgumentParser = sub_parser.add_parser(
+        "check", help=""
+    )
+    parser_check.set_defaults(handler=commands.check)
 
     args: argparse.ArgumentParser = parser.parse_args()
 
@@ -39,6 +45,7 @@ def main():
         args.handler(args)
     else:
         parser.print_help()
+
 
 if __name__ == "__main__":
     main()

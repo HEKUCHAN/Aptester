@@ -1,0 +1,31 @@
+{
+    "information": {
+        "author": "Mr.sample (Option)",
+        "name": "FizzBuzz Tests (Option)",
+        "description": "Something (Option)"
+    },
+    "config": {
+        "limit-memory": 1024,
+        "limit-timeout": 1000
+    },
+    "tests": {
+        "TEST1": {
+            "input": 3,
+            "out": "1\n2\nFizz\n"
+        },
+        "TEST2": [
+            9,
+            [
+                1,
+                2,
+                "Fizz",
+                4,
+                "Buzz",
+                "Fizz",
+                7,
+                8,
+                "Fizz"
+            ]
+        ]
+    }
+}

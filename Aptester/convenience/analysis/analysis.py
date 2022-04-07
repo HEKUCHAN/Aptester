@@ -17,6 +17,9 @@ class Analysis:
 
         self.file = __file_object
 
+    def analyze(self):
+        pass
+
     @classmethod
     def is_can_analysis(cls, file_path):
         file = File(file_path)

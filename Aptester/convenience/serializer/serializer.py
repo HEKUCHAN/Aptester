@@ -4,7 +4,7 @@ from pathlib import Path
 from convenience import File, FileSuffix, FileJson, FileText, FileYaml
 
 
-class Analysis:
+class Serializer:
     def __init__(self, file_path: Union[str, bytes, PathLike]):
         __file = File(file_path)
 

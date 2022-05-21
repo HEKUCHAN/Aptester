@@ -34,9 +34,7 @@ def main():
     parser_config.set_defaults(handler=commands.config)
 
     # Check Command
-    parser_check: argparse.ArgumentParser = sub_parser.add_parser(
-        "check", help=""
-    )
+    parser_check: argparse.ArgumentParser = sub_parser.add_parser("check", help="")
     parser_check.set_defaults(handler=commands.check)
 
     args: argparse.ArgumentParser = parser.parse_args()

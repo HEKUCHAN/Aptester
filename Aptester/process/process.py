@@ -46,7 +46,9 @@ class Process:
 
         process_stdout, process_error = process.communicate(self.input)
 
-        print(process_stdout.decode().split("\n")[-2])
+        print(process_stdout.decode(
+
+        ).split("\n")[-2])
         print(process.pid, max_memory, "Kb", "END")
 
 

@@ -3,7 +3,7 @@ import sys
 import psutil
 import subprocess
 from time import sleep
-from typing import ByteString, Optional, List
+from typing import Optional, List
 
 
 class Process:
@@ -32,20 +32,22 @@ class Process:
 
         print(self.command, process.pid)
 
-        while process.wait() is None:
+        while process.poll() is None:
             try:
-                usage_memory = psutil.Process(process.pid).memory_info().rss / 1024
+                process_info = psutil.Process(process.pid)
+                usage_memory = process_info.memory_info().rss / 1024
 
-                if usage_memory > max_memory:
-                    max_memory = usage_memory
+                print(process_info.status())
             except:
-                pass
-        else:
-            process_stdout = process.stdout.read().decode()
-            process_error = process.stderr.read().decode()
+                break
 
-        print(process_stdout.split("\n")[-2])
-        print(process.pid, max_memory, "END")
+            if usage_memory > max_memory:
+                max_memory = usage_memory
+
+        process_stdout, process_error = process.communicate(self.input)
+
+        print(process_stdout.decode().split("\n")[-2])
+        print(process.pid, max_memory, "Kb", "END")
 
 
 Process(

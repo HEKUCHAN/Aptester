@@ -9,7 +9,7 @@ __author__ = 'Heitor Hirose'
 
 setup(
     name='ApTester',
-    version='0.1.4',
+    version='2.0.0',
     python_requires='>=3.5',
     entry_points={
         'console_scripts': [

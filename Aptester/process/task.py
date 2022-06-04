@@ -49,6 +49,7 @@ class Task(threading.Thread):
         except subprocess.TimeoutExpired:
             self.process.kill()
             self.is_timeout = True
+
             return
 
         self.stdout: Optional[str] = self.stdout.decode()

@@ -1,58 +1,63 @@
-import os
 import sys
 import psutil
+import threading
 import subprocess
-from time import sleep
-from typing import Optional, List
+from typing import Optional, Union, List
 
 
-class Process:
+class Process(threading.Thread):
     def __init__(
         self,
         command: str,
         executable: str,
         input: Optional[str] = None
     ) -> None:
-        self.command: List[bytes] = command.split()
-        self.input: Optional[str] = input
+        threading.Thread.__init__(self)
+
         self.executable: str = executable
+        self.command: List[str] = command.split()
+        self.input: Union[str, bytes, None] = input
 
         if self.input is not None:
             self.input = input.encode('utf-8')
 
-    def run(self):
-        process = subprocess.Popen(
+        # initial variables
+        self.pid: int = 0
+        self.max_memory: int = 0
+        self.process = subprocess.Popen(
             self.command,
             stdin=subprocess.PIPE,
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE
         )
+        self.pid = self.process.pid
 
-        max_memory = 0
+        self.process_stdout: Optional[str] = None
+        self.process_error: Optional[str] = None
 
-        print(self.command, process.pid)
-
-        while process.poll() is None:
+    def check_memory(self, pid) -> None:
+        while True:
             try:
-                process_info = psutil.Process(process.pid)
-                usage_memory = process_info.memory_info().rss / 1024
-
-                print(process_info.status())
+                process_info: psutil.Process = psutil.Process(pid)
+                usage_memory: float = process_info.memory_info().rss / 1024
             except:
                 break
 
-            if usage_memory > max_memory:
-                max_memory = usage_memory
+            if usage_memory > self.max_memory:
+                self.max_memory = usage_memory
 
-        process_stdout, process_error = process.communicate(self.input)
+    def communicate(self, process, input) -> None:
+        self.process_stdout, self.process_error = process.communicate(input)
 
-        print(process_stdout.decode(
+        self.process_stdout: Optional[str] = self.process_stdout.decode()
+        self.process_error: Optional[str] = self.process_error.decode()
 
-        ).split("\n")[-2])
-        print(process.pid, max_memory, "Kb", "END")
+    def run(self):
+        memory_observer = threading.Thread(target=self.check_memory, args=(self.pid, ))
+        process_observer = threading.Thread(target=self.communicate, args=(self.process, self.input, ))
 
+        process_observer.start()
+        memory_observer.start()
 
-Process(
-    'python test.py',
-    executable=sys.executable
-).run()
+        process_observer.join()
+        memory_observer.join()

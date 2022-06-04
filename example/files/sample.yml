@@ -3,7 +3,7 @@ information:
   name: FizzBuzz Tests (Option)
   description: |
     Something (Option)
-Config:
+config:
   limit-memory: 1024
   limit-timeout: 1000
 tests:

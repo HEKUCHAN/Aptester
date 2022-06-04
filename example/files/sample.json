@@ -6,7 +6,7 @@
     },
     "config": {
         "limit-memory": 1024,
-        "limit-timeout": 1000
+        "limit-timeout": 60000
     },
     "tests": {
         "TEST1": {

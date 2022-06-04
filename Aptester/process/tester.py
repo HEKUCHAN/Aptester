@@ -1,6 +1,12 @@
 import sys
-from process import Process
-from static import StrOrBytesPath
+from typing import Optional, List
 
-class Tester(Process):
-    pass
+class Tester:
+    def __init__(
+        self,
+        command: str,
+        test_cases: List[str],
+        limit_memory: int = 1024,
+        timeout_ms: int = 60000
+    ):
+        pass

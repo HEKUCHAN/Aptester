@@ -48,7 +48,6 @@ class Reader:
                     )
                 )
 
-        print(test_cases)
         return test_cases
 
     @classmethod

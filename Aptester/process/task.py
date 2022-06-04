@@ -5,17 +5,30 @@ from typing import Optional, Union, List
 
 
 class Task(threading.Thread):
+    """Task class
+    This class used for create process task.
+    You can runs the task using run method.
+
+    Args:
+        command (str) : Parameter to set that command you would like to execute.
+        input: (str) : Parameter to set the standard input of your process.
+        timeout_ms: (int) : parameter to set timeout. Defaults to None.
+            if a TimeOutError detected, the is_timeout property is set to True.
+            Defaults to None(No timeout).
+
+    Todo:
+        * Add counter of process time
+    """
     def __init__(
         self,
         command: str,
-        executable: str,
         input: Optional[str] = None,
         timeout_ms: Optional[int] = None
     ) -> None:
+        # Instancing super class
         threading.Thread.__init__(self)
 
         self.timeout = timeout_ms
-        self.executable: str = executable
         self.command: List[str] = command.split()
         self.input: Union[str, bytes, None] = input
 
@@ -40,7 +53,30 @@ class Task(threading.Thread):
         self.stdout: Optional[str] = None
         self.error: Optional[str] = None
 
-    def communicate(self) -> None:
+    def run(self) -> None:
+        """Task.run
+        This method used to run the process observers and memory observers.
+        It also stores the process info in stdout, stderr, max_memory_kb properties
+        at the end of the process.
+
+        And when _communicate method execute, in same time _check_memory method execute.
+        """
+
+        memory_observer = threading.Thread(target=self._check_memory)
+        process_observer = threading.Thread(target=self._communicate)
+
+        process_observer.start()
+        memory_observer.start()
+
+        process_observer.join()
+        memory_observer.join()
+
+    def _communicate(self) -> None:
+        """Task._communicate
+        This method initiates execution of the command.
+        if a TimeOutError detected, the is_timeout property is set to True.
+        """
+
         try:
             self.stdout, self.error = self.process.communicate(
                 self.input,
@@ -55,7 +91,18 @@ class Task(threading.Thread):
         self.stdout: Optional[str] = self.stdout.decode()
         self.error: Optional[str] = self.error.decode()
 
-    def check_memory(self) -> None:
+    def _check_memory(self) -> None:
+        """Task._check_memory
+        This method checks memory usage during main process execution.
+        It also stores the maximum memory usage in the max_memory_kb property
+        at the end of the process.
+
+        Note:
+            * DO NOT EXECUTE BEFORE _communicate class method.
+              if this class method executed before _communicate method,
+              the method process just break.
+        """
+
         while True:
             try:
                 process_info: psutil.Process = psutil.Process(self.pid)
@@ -66,22 +113,9 @@ class Task(threading.Thread):
             if usage_memory_kb > self.max_memory_kb:
                 self.max_memory_kb = usage_memory_kb
 
-    def run(self) -> None:
-        memory_observer = threading.Thread(target=self.check_memory)
-        process_observer = threading.Thread(target=self.communicate)
-
-        process_observer.start()
-        memory_observer.start()
-
-        process_observer.join()
-        memory_observer.join()
-
 if __name__ == "__main__":
-    import sys
-
     task = Task(
         'python test.py',
-        executable=sys.executable
     )
 
     task.run()

@@ -1,0 +1,6 @@
+pathlib==1.0.1
+argparse==1.4.0
+fabric3==1.14.post1
+rich==12.4.4
+psutil==5.9.1
+pyyaml==6.0

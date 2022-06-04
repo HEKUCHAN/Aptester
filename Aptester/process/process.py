@@ -32,13 +32,13 @@ class Process(threading.Thread):
         )
         self.pid = self.process.pid
 
-        self.process_stdout: Optional[str] = None
-        self.process_error: Optional[str] = None
+        self.stdout: Optional[str] = None
+        self.error: Optional[str] = None
 
-    def check_memory(self, pid) -> None:
+    def check_memory(self) -> None:
         while True:
             try:
-                process_info: psutil.Process = psutil.Process(pid)
+                process_info: psutil.Process = psutil.Process(self.pid)
                 usage_memory: float = process_info.memory_info().rss / 1024
             except:
                 break
@@ -46,15 +46,15 @@ class Process(threading.Thread):
             if usage_memory > self.max_memory:
                 self.max_memory = usage_memory
 
-    def communicate(self, process, input) -> None:
-        self.process_stdout, self.process_error = process.communicate(input)
+    def communicate(self) -> None:
+        self.stdout, self.error = self.process.communicate(self.input)
 
-        self.process_stdout: Optional[str] = self.process_stdout.decode()
-        self.process_error: Optional[str] = self.process_error.decode()
+        self.stdout: Optional[str] = self.stdout.decode()
+        self.error: Optional[str] = self.error.decode()
 
     def run(self):
-        memory_observer = threading.Thread(target=self.check_memory, args=(self.pid, ))
-        process_observer = threading.Thread(target=self.communicate, args=(self.process, self.input, ))
+        memory_observer = threading.Thread(target=self.check_memory)
+        process_observer = threading.Thread(target=self.communicate)
 
         process_observer.start()
         memory_observer.start()

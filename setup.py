@@ -41,7 +41,8 @@ setup(
         "argparse",
         "fabric3",
         "rich",
-        "psutil"
+        "psutil",
+        "pyyaml"
     ],
     long_description=long_description,
     long_description_content_type="text/markdown",

@@ -9,10 +9,10 @@ class Task(threading.Thread):
     This class used for create process task.
     You can runs the task using run method.
 
-    Args:
+    Attributes:
         command (str) : Parameter to set that command you would like to execute.
         input: (str) : Parameter to set the standard input of your process.
-        timeout_ms: (int) : parameter to set timeout. Defaults to None.
+        timeout_ms: (int, float) : parameter to set timeout. Defaults to None.
             if a TimeOutError detected, the is_timeout property is set to True.
             Defaults to None(No timeout).
 
@@ -23,7 +23,7 @@ class Task(threading.Thread):
         self,
         command: str,
         input: Optional[str] = None,
-        timeout_ms: Optional[int] = None
+        timeout_ms: Optional[Union[int, float]] = None
     ) -> None:
         # Instancing super class
         threading.Thread.__init__(self)

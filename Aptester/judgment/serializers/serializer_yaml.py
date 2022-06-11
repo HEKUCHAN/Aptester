@@ -26,7 +26,6 @@ class ReaderYaml(Reader):
     def open(self) -> None:
         with open(self.path) as f:
             self.f = yaml.load(f, Loader=yaml.FullLoader)
-            print(self.f)
 
 
 if __name__ == "__main__":
